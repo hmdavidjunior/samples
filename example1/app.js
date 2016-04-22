@@ -34,3 +34,6 @@ console.log(colors.random('Use random styles on everything!'))
 console.log(colors.america('America, Heck Yeah!'));
 
 console.log('Setting themes is useful')
+
+
+console.log('AAAAAAAAAAAAAA');
