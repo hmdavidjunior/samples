@@ -1,0 +1,23 @@
+Exercise
+
+Part 1 - Your own module
+
+    Create a script named app.js
+    Create another script named calculator.js
+    Calculator should export a Javascript object that has 4 functions: add, subtract, multiply, divide - each function taking two parameters of type Number
+    app.js should import your calculator module
+    In app.js call each function of the imported module's object and print the results of the operation to the console
+
+Part 2 - NPM
+
+    Install the colors npm module (https://www.npmjs.com/package/colors)
+    Create code using that npm module to get an end result that looks like this:
+
+
+--------------------------------------
+
+Commands - 
+    SHIFT + CTRL + C => abre o prompt na pasta
+    $ npm install colors => instala o modulo colors
+    $ node app.js => executa o programa
+    $ npm start => ainda nao funciona, deve ter que configurar algo 
