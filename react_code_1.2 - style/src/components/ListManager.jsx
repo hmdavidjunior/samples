@@ -22,12 +22,7 @@ var ListManager = React.createClass({
     
     handleChange: function (e){
         e.preventDefault();
-        
-        //this.state.newItemText = e.target.value;
-        //this.setState(this.state);
-        
-        //console.log(e.target.value +" <> "+ this.state.newItemText);
-        
+
         var value = !e.target.value ? '': e.target.value.toUpperCase();
         
         
@@ -35,14 +30,43 @@ var ListManager = React.createClass({
     },
     
     render: function() {
+        var divStyle= {
+            marginTop:"10px"
+        };
+        
+        var headingStyle = {};
+        var panelStyle = {};
+        
+        if (this.props.headingColor){
+            headingStyle.background = this.props.headingColor;
+            panelStyle.borderColor = this.props.headingColor;
+        }
+        
+        
+
+        
         return (
-            <div className={this.props.className}>
-                <h3>{this.props.title}</h3>
-                <form onSubmit={this.handleSubmit}>
-                        <input type="text" onChange={this.handleChange} value={this.state.newItemText}></input>
-                        <input type="submit" value="Add" ></input> 
-                </form>
-                <List items={this.state.items} />
+            <div style={divStyle} className="col-sm-4">
+                <div className="panel panel-primary" style={panelStyle} >
+                    <div style={headingStyle} className="panel-heading">
+                        <h3>{this.props.title}</h3>
+                    </div>
+                    <div className="panel-body">
+                        <div className="row">
+                            <form onSubmit={this.handleSubmit}>
+                                <div className="col-sm-9" >
+                                    <input className="form-control" type="text" onChange={this.handleChange} value={this.state.newItemText}></input>
+                                </div> 
+                                <div className="col-sm-2" >
+                                    <button className="btn btn-primary">Add</button>
+                                </div> 
+                            </form>
+                        </div>
+                        <div className="row">
+                            <List items={this.state.items} />
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     },

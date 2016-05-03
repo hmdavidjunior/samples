@@ -19456,32 +19456,71 @@ var ListManager = React.createClass({
     handleChange: function (e) {
         e.preventDefault();
 
-        //this.state.newItemText = e.target.value;
-        //this.setState(this.state);
-
-        //console.log(e.target.value +" <> "+ this.state.newItemText);
-
         var value = !e.target.value ? '' : e.target.value.toUpperCase();
 
         this.setState({ newItemText: value, items: this.state.items });
     },
 
     render: function () {
+        var divStyle = {
+            marginTop: "10px"
+        };
+
+        var headingStyle = {};
+        var panelStyle = {};
+
+        if (this.props.headingColor) {
+            headingStyle.background = this.props.headingColor;
+            panelStyle.borderColor = this.props.headingColor;
+        }
+
         return React.createElement(
             'div',
-            { className: this.props.className },
+            { style: divStyle, className: 'col-sm-4' },
             React.createElement(
-                'h3',
-                null,
-                this.props.title
-            ),
-            React.createElement(
-                'form',
-                { onSubmit: this.handleSubmit },
-                React.createElement('input', { type: 'text', onChange: this.handleChange, value: this.state.newItemText }),
-                React.createElement('input', { type: 'submit', value: 'Add' })
-            ),
-            React.createElement(List, { items: this.state.items })
+                'div',
+                { className: 'panel panel-primary', style: panelStyle },
+                React.createElement(
+                    'div',
+                    { style: headingStyle, className: 'panel-heading' },
+                    React.createElement(
+                        'h3',
+                        null,
+                        this.props.title
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'panel-body' },
+                    React.createElement(
+                        'div',
+                        { className: 'row' },
+                        React.createElement(
+                            'form',
+                            { onSubmit: this.handleSubmit },
+                            React.createElement(
+                                'div',
+                                { className: 'col-sm-9' },
+                                React.createElement('input', { className: 'form-control', type: 'text', onChange: this.handleChange, value: this.state.newItemText })
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'col-sm-2' },
+                                React.createElement(
+                                    'button',
+                                    { className: 'btn btn-primary' },
+                                    'Add'
+                                )
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'row' },
+                        React.createElement(List, { items: this.state.items })
+                    )
+                )
+            )
         );
     },
 
@@ -19514,12 +19553,12 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var ListManager = require('./components/ListManager.jsx');
 
-var manager1 = ReactDOM.render(React.createElement(ListManager, { title: 'My Ingredients 1', className: 'listManager' }), document.getElementById('ingredients_1'));
+var manager1 = ReactDOM.render(React.createElement(ListManager, { title: 'My Ingredients 1' }), document.getElementById('ingredients_1'));
 
 manager1.addItem('Bread');
 manager1.addItem('Catchup');
 
-var manager2 = ReactDOM.render(React.createElement(ListManager, { title: 'My Ingredients 2', className: 'listManager' }), document.getElementById('ingredients_2'));
+var manager2 = ReactDOM.render(React.createElement(ListManager, { title: 'My Ingredients 2', headingColor: '#b31217' }), document.getElementById('ingredients_2'));
 
 manager2.addItem('Bread');
 manager2.addItem('Catchup');
